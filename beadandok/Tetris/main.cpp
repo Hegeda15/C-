@@ -17,7 +17,8 @@ int main()
     gout.open(WIDTH, HEIGHT);
 
     Grid grid;
-    TBlock block;
+    IBlock block=IBlock();
+
 
     gin.timer(16);   // 60 FPS
 
