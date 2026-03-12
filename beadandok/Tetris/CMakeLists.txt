@@ -14,5 +14,15 @@ target_link_libraries( graphics SDL2 SDL2.dll SDL2main SDL2_ttf SDL2_ttf.dll)
 
 add_executable(CLionGraphicsKit main.cpp
         Grid.cpp
-        Grid.h)
+        Grid.h
+        Block.cpp
+        Block.h
+        Position.cpp
+        Position.h
+        Colors.cpp
+        Colors.h
+        BlockTypes.cpp
+        BlockTypes.h
+        HelperFn.cpp
+        HelperFn.h)
 target_link_libraries(CLionGraphicsKit graphics)

@@ -1,30 +1,44 @@
 #include "graphics.hpp"
-#include <vector>
 #include <cstdlib>
 #include <ctime>
-#include <string>
-#include "Grid.h"
-using namespace genv;
-using namespace std;
 
-const int WIDTH = 400;
+#include "Grid.h"
+#include "BlockTypes.h"
+
+using namespace genv;
+
+const int WIDTH = 300;
 const int HEIGHT = 600;
 
-
-int main() {
+int main()
+{
     srand(time(0));
+
     gout.open(WIDTH, HEIGHT);
-    Grid grid=Grid();
-    grid.Print();
+
+    Grid grid;
+    TBlock block;
+
+    gin.timer(16);   // 60 FPS
 
     event ev;
 
-    while (gin >> ev) {
-        event ev;
-        gin >> ev;
+    while (gin >> ev)
+    {
+        if (ev.type == ev_timer)
+        {
+            // háttér törlés
+            gout << move_to(0,0)
+                 << color(0,0,0)
+                 << box(WIDTH, HEIGHT);
 
-        grid.Draw();
-        gout << refresh;
+            grid.Draw();
+            block.Draw();
+
+            gout << refresh;
+        }
+
+
     }
 
     return 0;
