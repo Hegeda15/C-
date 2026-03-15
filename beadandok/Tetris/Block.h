@@ -13,11 +13,12 @@
 class Block {
 public:
     Block();
-    void Draw();
+    void Draw(int offsetX,int offsetY);
     void Move(int rows,int cols);
 
     std::vector<Position> GetCellPosition();
-
+    void Rotate();
+    void CancleRotation();
     int id;
     std::map<int,std::vector<Position>> cells;
 

@@ -9,5 +9,6 @@
 
 
 void DrawRectangle(int x, int y, int width, int height, Color c);
+void DrawTxt(int x,int y,std::string txt);
 
 #endif //CLIONGRAPHICSKIT_HELPERFN_H

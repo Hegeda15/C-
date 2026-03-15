@@ -24,5 +24,7 @@ add_executable(CLionGraphicsKit main.cpp
         BlockTypes.cpp
         BlockTypes.h
         HelperFn.cpp
-        HelperFn.h)
+        HelperFn.h
+        GamePlan.cpp
+        GamePlan.h)
 target_link_libraries(CLionGraphicsKit graphics)
