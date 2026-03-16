@@ -48,14 +48,15 @@ int main()
             DrawTxt(380,250,"Next");
             if (game.gameOver) {
                 DrawTxt(370,400,"GAME OVER");
-
+                DrawTxt(370, 430, "PRESS ANY KEY");
             }
 
             game.HandleMovement(ev);
             game.Draw();
             gout << refresh;
         }
-
+        if (ev.type == ev_key && ev.keycode == key_escape)
+            break;
 
     }
 
