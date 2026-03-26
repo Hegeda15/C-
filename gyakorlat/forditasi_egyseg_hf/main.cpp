@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
-#include "Komplex.h"
+#include "komplex.h"
 using namespace genv;
 using namespace std;
 

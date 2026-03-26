@@ -13,8 +13,6 @@ target_link_libraries( graphics SDL2 SDL2.dll SDL2main SDL2_ttf SDL2_ttf.dll)
 
 
 add_executable(CLionGraphicsKit main.cpp
-        Komplex.cpp
-        Komplex.h
         komplex.cpp
         komplex.h)
 target_link_libraries(CLionGraphicsKit graphics)
