@@ -14,7 +14,7 @@ protected:
     int max,min;
 
 public:
-    counter_widget(int x,int y,int h,int w,int min,int max);
+    counter_widget(Application*parent,int x,int y,int h,int w,int min,int max);
     virtual void draw() override;
     virtual void handle(genv::event ev) override;
 

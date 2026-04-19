@@ -18,5 +18,8 @@ add_executable(CLionGraphicsKit main.cpp
         counter_widget.cpp
         counter_widget.hpp
         listBox_widget.cpp
-        listBox_widget.hpp)
+        listBox_widget.hpp
+        Application.cpp
+        Application.hpp
+)
 target_link_libraries(CLionGraphicsKit graphics)

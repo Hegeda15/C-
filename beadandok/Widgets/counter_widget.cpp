@@ -6,57 +6,57 @@
 using namespace genv;
 
 
-counter_widget::counter_widget(int x, int y, int w, int h, int min, int max)
-    : widget(x,y,w,h), min(min), max(max)
+counter_widget::counter_widget(Application*parent,int x, int y, int w, int h, int min, int max)
+    : widget(parent,x,y,w,h), min(min), max(max)
 {
     value = min;
 }
-void counter_widget::draw()
-{
-    // háttér
-    gout << move_to(x, y)
-         << color(215,255,255)
-         << box(w, h);
+void counter_widget::draw() {
+    genv::canvas can(w, h);
+    int btn_w = 20;
+    int btn_h = h / 2;
 
-    // szám
-    gout << move_to(x + 5,y + h/2)
-         << color(0,0,0)
-         << text(std::to_string(value));
 
-    // ↑ gomb
-    gout << move_to(x + w - 20, y)
-         << color(200,200,200)
-         << box(20, h/2);
+    can << move_to(0, 0) << color(220, 220, 220) << box(w, h);
 
-    gout << move_to(x + w - 18, y+3 + 12)
-         << color(0,0,0)
-         << text("/\\");
 
-    // ↓ gomb
-    gout << move_to(x + w - 20, y + h/2)
-         << color(200,200,200)
-         << box(20, h/2);
+    can << move_to(5, h / 2 + 7) << color(0, 0, 0) << text(std::to_string(value));
 
-    gout << move_to(x + w - 18, y+3 + h - 10)
-         << color(0,0,0)
-         << text("\\/");
+
+    can <<move_to(w - btn_w, 0) << color(200, 200, 200) << box(btn_w, btn_h);
+
+
+    can << move_to(w - btn_w + 3, btn_h - 5) <<color(0, 0, 0) << text("/\\");
+
+
+    can << move_to(w - btn_w, btn_h) << color(180, 180, 180) << box(btn_w, btn_h);
+
+
+    can << move_to(w - btn_w + 3, h - 5) << color(0, 0, 0) << text("\\/");
+
+
+    can << move_to(w - btn_w, 0) << color(0,0,0) << line(0, h);
+    can << move_to(w - btn_w, btn_h) << line(btn_w, 0);
+
+
+    gout << stamp(can, x, y);
 }
 
 
-void counter_widget::handle(genv::event ev)
+void counter_widget::handle(event ev)
 {
-    if (ev.type == genv::ev_mouse && ev.button == btn_left)
+    if (ev.type == ev_mouse && ev.button == btn_left)
     {
-        if (ev.pos_x >= x && ev.pos_x <= x + w &&
+        if (ev.pos_x >= x && ev.pos_x <= y + w &&
             ev.pos_y >= y && ev.pos_y <= y + h)
         {
-            // ↑ gomb
+            //gombok
             if (ev.pos_x > x + w - 20 &&
                 ev.pos_y < y + h/2)
             {
                 value++;
             }
-            // ↓ gomb
+
             else if (ev.pos_x > x + w - 20 &&
                      ev.pos_y >= y + h/2)
             {
@@ -67,8 +67,20 @@ void counter_widget::handle(genv::event ev)
             if (value > max) value = max;
         }
     }
-}
+    if (ev.type == ev_key) {
+        if (ev.keycode == key_up) value++;
+        if (ev.keycode == key_down) value--;
+        if (ev.keycode == key_pgup) value += 10;
+        if (ev.keycode == key_pgdn) value -= 10;
 
+
+        if (value < min) value = min;
+        if (value > max) value = max;
+    }
+}
+int counter_widget::getIntValue() const {
+    return value;
+}
 std::string counter_widget::getValue() const
 {
     return std::to_string(value);
